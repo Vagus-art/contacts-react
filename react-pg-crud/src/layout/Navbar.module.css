@@ -1,0 +1,29 @@
+.CNav{
+    width:100%;
+    background-color:rgb(115, 115, 255);
+}
+.CLink{
+    color:white;
+    text-decoration: none;
+}
+.CNavMenu{
+    display:flex;
+    width:100%;
+    height:100%;
+    list-style: none;
+}
+.CNavMenuItem{
+    height:100%;
+    padding:15px;
+    text-align: center;
+}
+.CNavMenuItem:hover{
+    background-color: rgb(88, 88, 197);
+}
+.Brand{
+    margin-left:auto;
+    font-size: large;
+}
+.Brand:hover{
+    background-color: initial;
+}

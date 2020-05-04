@@ -1,2 +1,2 @@
-# react-pg-crud
+# preact-pg-crud
 pg-rest-api client

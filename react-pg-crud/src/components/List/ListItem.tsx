@@ -1,10 +1,8 @@
 import React from "react";
 import classes from "./ListItem.module.css";
+import { IListItem } from "../../interfaces";
 
-interface IListItem {
-    name: string,
-    phone: number
-}
+
 
 const ListItem : React.FC<IListItem> = (props) => {
   return (

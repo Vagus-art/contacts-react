@@ -1,31 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import List from "./List";
+import { IContact } from "../../interfaces";
+import DataContext from "../../context/DataProvider";
 
-interface IContact {
-  name: string;
-  phone: string;
-  id: number
-}
 
 const apiRoot = "https://pg-raw-api.herokuapp.com/api/contacts/";
 
 
 const ListWrapper = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData]: [IContact[] | null, Function] = useState(null);
-  const [error, setError]: [string, Function] = useState("");
+
+  const {store, dispatch} = useContext(DataContext);
+
+  const {isLoading, data, error} = store;
 
   const fetchData = () => {
     axios
       .get(apiRoot)
       .then((response) => {
-        setData(response.data.data);
+        dispatch({type:"DATA_FETCHED",payload:response.data.data});
       })
       .catch((err) => {
-        setError(err);
+        dispatch({type:"ERROR",payload:err});
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => dispatch({type:"TOGGLE_LOADING",payload:false}));
   };
 
   useEffect(() => {

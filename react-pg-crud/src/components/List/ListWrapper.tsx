@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import List from "./List";
-import { IContact } from "../../interfaces";
 import DataContext from "../../context/DataProvider";
 
 
@@ -12,11 +11,11 @@ const ListWrapper = () => {
 
   const {store, dispatch} = useContext(DataContext);
 
-  const {isLoading, data, error} = store;
+  const {isLoading, data, error, search} = store;
 
-  const fetchData = () => {
+  const fetchData = (search:string) => {
     axios
-      .get(apiRoot)
+      .get(search?`${apiRoot}/search/${search}`:apiRoot)
       .then((response) => {
         dispatch({type:"DATA_FETCHED",payload:response.data.data});
       })
@@ -27,8 +26,8 @@ const ListWrapper = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(search);
+  }, [search]);
 
   return (<List isLoading={isLoading} data={data} error={error}/>)};
 

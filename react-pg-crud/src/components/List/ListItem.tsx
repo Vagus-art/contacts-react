@@ -3,14 +3,16 @@ import classes from "./ListItem.module.css";
 
 interface IListItem {
     name: string,
-    value: number
+    phone: number
 }
 
-export default function ListItem(props:IListItem) {
+const ListItem : React.FC<IListItem> = (props) => {
   return (
     <div className={classes.ListItem}>
       <p>{props.name}</p>
-      <p>{props.value}</p>
+      <p>{props.phone}</p>
     </div>
   );
 }
+
+export default ListItem;

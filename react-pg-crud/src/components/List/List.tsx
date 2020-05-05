@@ -1,7 +1,6 @@
-import React, { ReactNode, PropsWithChildren } from "react";
+import React from "react";
 import ListItem from "./ListItem";
 import classes from "./List.module.css";
-import ListFetcherHOC from './ListFetcherHOC';
 
 /*
 const mock = [
@@ -30,17 +29,16 @@ interface IListProps {
   error: string | null;
 }
 
-class List extends React.Component<IListProps> {
-    render(){
+const List : React.FC<IListProps> = (props) => {
   return (
     <div className={classes.List}>
-      {(!this.props.isLoading &&
-        !this.props.error) ?
-        this.props.data.map((item: any, index: number) => (
-          <ListItem name={item.name} value={item.value} key={index} />
+      {(!props.isLoading &&
+        !props.error) ?
+        props.data.map((item: any, index: number) => (
+          <ListItem name={item.name} phone={item.phone} key={index} />
         )) : <div>Loading...</div>}
     </div>
-  );}
+  );
 }
 
-export default ListFetcherHOC(List,"https://pg-raw-api.herokuapp.com/api/contacts/");
+export default List;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import List from "./List";
 
 interface IContact {
   name: string;
@@ -7,8 +8,10 @@ interface IContact {
   id: number
 }
 
+const apiRoot = "https://pg-raw-api.herokuapp.com/api/contacts/";
 
-const ListFetcherHOC = (Component: React.ComponentType<any>, apiRoot:string) => {
+
+const ListWrapper = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData]: [IContact[] | null, Function] = useState(null);
   const [error, setError]: [string, Function] = useState("");
@@ -16,8 +19,8 @@ const ListFetcherHOC = (Component: React.ComponentType<any>, apiRoot:string) => 
   const fetchData = () => {
     axios
       .get(apiRoot)
-      .then((data) => {
-        setData(data);
+      .then((response) => {
+        setData(response.data.data);
       })
       .catch((err) => {
         setError(err);
@@ -29,7 +32,7 @@ const ListFetcherHOC = (Component: React.ComponentType<any>, apiRoot:string) => 
     fetchData();
   }, []);
 
-  return <Component isLoading={isLoading} data={data} error={error}/>;
-}
+  return (<List isLoading={isLoading} data={data} error={error}/>)};
 
-export default ListFetcherHOC;
+
+export default ListWrapper;

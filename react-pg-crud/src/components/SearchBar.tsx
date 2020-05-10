@@ -4,7 +4,7 @@ import DataContext from '../context/DataProvider';
 
 export default function SearchBar() {
     const [_search, _setSearch] = useState("");
-    const {store,dispatch} = useContext(DataContext);
+    const {dispatch} = useContext(DataContext);
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         dispatch({type:"SEARCH",payload:_search})

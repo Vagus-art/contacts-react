@@ -23,7 +23,7 @@ function reducer(state:IDataContext, action:{type:string,payload:any}) {
   }
 }
 
-const DataContext : any  = createContext({});
+const DataContext : any = createContext({});
 
 function DataProvider({children}:{children:JSX.Element[]}) {
   const [store, dispatch] = useReducer(reducer, initialState);

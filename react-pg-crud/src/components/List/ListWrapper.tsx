@@ -23,7 +23,7 @@ const ListWrapper = () => {
           dispatch({type:action,payload:response.data.data});
         })
         .catch((err) => {
-          dispatch({type:"ERROR",payload:err});
+          dispatch({type:"ERROR",payload:"There has been an error"});
         })
         .finally(() => dispatch({type:"TOGGLE_LOADING",payload:false}));
     };

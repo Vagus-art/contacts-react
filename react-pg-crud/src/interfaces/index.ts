@@ -17,4 +17,5 @@ export interface IContact {
 
 export interface IDataContext extends IListProps{
   search: string;
+  offset: number
 }

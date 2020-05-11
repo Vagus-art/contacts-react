@@ -2,3 +2,11 @@
     padding:15px;
     border-bottom: 1px solid #ced4da;
 }
+.ListItemLoader{
+    background-color: gray;
+    color:white;
+    text-align: center;
+}
+.ListItemLoader:hover{
+    cursor:pointer;
+}

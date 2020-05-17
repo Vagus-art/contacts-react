@@ -7,6 +7,7 @@ const ListItemLoader : React.FC = () => {
   const {dispatch} = useContext(DataContext);
   const handleClick = () => {
     dispatch({type:"OFFSET"});
+    dispatch({type:"TOGGLE_LOADING",payload:true});
   }
   return (
     <div className={`${classes.ListItemLoader} ${classes.ListItem}`} onClick={()=>handleClick()}>

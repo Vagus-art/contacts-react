@@ -2,15 +2,19 @@ import React from "react";
 import classes from "./ListItem.module.css";
 import { IListItem } from "../../interfaces";
 
-
-
-const ListItem : React.FC<IListItem> = (props) => {
+const ListItem: React.FC<IListItem> = (props) => {
   return (
-    <div className={classes.ListItem}>
-      <p>{props.name}</p>
-      <p>{props.phone}</p>
+    <div className={`${classes.ListItem} ${classes.ListItemWithButtons}`}>
+      <div>
+        <p>{props.name}</p>
+        <p>{props.phone}</p>
+      </div>
+      <div className={classes.ButtonPanel}>
+        <button>edit</button>
+        <button>delete</button>
+      </div>
     </div>
   );
-}
+};
 
 export default ListItem;

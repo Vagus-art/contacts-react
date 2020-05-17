@@ -6,8 +6,9 @@ export default function SearchBar() {
     const [_search, _setSearch] = useState("");
     const {dispatch} = useContext(DataContext);
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        dispatch({type:"SEARCH",payload:_search})
+        e.preventDefault();
+        dispatch({type:"SEARCH",payload:_search});
+        dispatch({type:"TOGGLE_LOADING",payload:true});
         console.log(_search);
     }
     return (

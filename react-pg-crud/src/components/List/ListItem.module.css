@@ -19,11 +19,21 @@
 .ButtonPanel :first-child{
     margin:0;
 }
+.ButtonPanel button{
+    width:35px;
+    height:35px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+}
+.ButtonPanel button:hover{
+    background-color: rgb(240, 240, 240);
+}
 .ListItemLoader{
-    background-color: gray;
+    background-color: #df5700;
     color:white;
     text-align: center;
 }
 .ListItemLoader:hover{
     cursor:pointer;
+    background-color: #f35d00;
 }

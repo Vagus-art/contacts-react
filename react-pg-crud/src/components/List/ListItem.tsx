@@ -1,6 +1,9 @@
 import React from "react";
 import classes from "./ListItem.module.css";
 import { IListItem } from "../../interfaces";
+// get our fontawesome imports
+import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ListItem: React.FC<IListItem> = (props) => {
   return (
@@ -10,8 +13,8 @@ const ListItem: React.FC<IListItem> = (props) => {
         <p>{props.phone}</p>
       </div>
       <div className={classes.ButtonPanel}>
-        <button>edit</button>
-        <button>delete</button>
+        <button><FontAwesomeIcon icon={faEdit} /></button>
+        <button><FontAwesomeIcon icon={faTrashAlt} /></button>
       </div>
     </div>
   );

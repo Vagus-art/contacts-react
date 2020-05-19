@@ -1,6 +1,6 @@
 .CNav{
     width:100%;
-    background-color:rgb(115, 115, 255);
+    background-color:#1a3ebc;
 }
 .CLink{
     color:white;
@@ -18,7 +18,7 @@
     text-align: center;
 }
 .CNavMenuItem:hover{
-    background-color: rgb(88, 88, 197);
+    background-color: #105fdb;
 }
 .Brand{
     margin-left:auto;

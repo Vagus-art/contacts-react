@@ -2,6 +2,7 @@ import React, { createContext, useReducer, useMemo } from "react";
 import { IDataContext } from "../interfaces";
 
 const initialState: IDataContext = {
+  modalMenuActive:false,
   search: "",
   data: null,
   isLoading: true,
@@ -27,6 +28,8 @@ function reducer(state: IDataContext, action: { type: string; payload: any }) {
         return { ...state, data: newData };
       }
       return { ...state, data: action.payload }
+    case "TOGGLE_MODAL_MENU":
+      return { ...state, modalMenuActive:!state.modalMenuActive}
     default:
       throw new Error();
   }

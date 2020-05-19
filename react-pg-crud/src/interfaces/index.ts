@@ -4,6 +4,12 @@ export interface IListProps {
   error: string | null;
 }
 
+export interface IModalMenuProps {
+  active: boolean;
+  closeFunc: () => void;
+  children: any;
+}
+
 export interface IListItem {
   name: string;
   phone: number;
@@ -17,5 +23,6 @@ export interface IContact {
 
 export interface IDataContext extends IListProps{
   search: string;
-  offset: number
+  offset: number;
+  modalMenuActive: boolean;
 }

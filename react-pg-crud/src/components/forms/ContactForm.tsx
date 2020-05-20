@@ -13,7 +13,7 @@ interface ContactFormProps {
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ Callback }) => {
-  const { register, handleSubmit, setValue, errors } = useForm({
+  const { register, handleSubmit, setValue, errors, clearError } = useForm({
     validationSchema: contactFormSchema,
   });
 
@@ -31,8 +31,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ Callback }) => {
   });
 
   useEffect(()=>{
-    setValue([{name,phone}])
-  },[name,phone,setValue]);
+    setValue([{name},{phone}]);
+    clearError();
+  },[name,phone,setValue,clearError]);
 
   return (
     <div>

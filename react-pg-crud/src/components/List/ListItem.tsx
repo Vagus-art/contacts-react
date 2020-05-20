@@ -6,17 +6,25 @@ import { IListItem } from "../../interfaces";
 import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ListItem: React.FC<IListItem> = (props) => {
-  const {dispatch} = useContext(DataContext);
+//agregar dispatchs de nombre y telefono a boton de editar
+
+const { listItem, buttonPanel, listItemWithButtons } = classes;
+
+const ListItem: React.FC<IListItem> = ({ name, phone }) => {
+  const { dispatch } = useContext(DataContext);
   return (
-    <div className={`${classes.ListItem} ${classes.ListItemWithButtons}`}>
+    <div className={`${listItem} ${listItemWithButtons}`}>
       <div>
-        <p>{props.name}</p>
-        <p>{props.phone}</p>
+        <p>{name}</p>
+        <p>{phone}</p>
       </div>
-      <div className={classes.ButtonPanel}>
-        <button onClick={()=>dispatch({type:"TOGGLE_MODAL_MENU"})}><FontAwesomeIcon icon={faEdit} /></button>
-        <button><FontAwesomeIcon icon={faTrashAlt} /></button>
+      <div className={buttonPanel}>
+        <button onClick={() => dispatch({ type: "TOGGLE_EDIT_FORM" })}>
+          <FontAwesomeIcon icon={faEdit} />
+        </button>
+        <button>
+          <FontAwesomeIcon icon={faTrashAlt} />
+        </button>
       </div>
     </div>
   );

@@ -5,36 +5,34 @@ import classes from "./List.module.css";
 import itemclasses from "./ListItem.module.css";
 import { IListProps } from "../../interfaces";
 
-const List: React.FC<IListProps> = (props) => {
+const { list } = classes;
+const { listItem } = itemclasses;
+
+const List: React.FC<IListProps> = ({ isLoading, data, error }) => {
   return (
-    <div className={classes.List}>
+    <div className={list}>
       {/*List items with loader button */}
-      {!props.error && props.data && (
+      {!error && data && (
         <div>
-          {props.data.map((item: any, index: number) => (
+          {data.map((item: any, index: number) => (
             <ListItem name={item.name} phone={item.phone} key={index} />
           ))}
         </div>
       )}
 
       {/*Loading indicator */}
-      {props.isLoading && !props.error && (
-        <div className={itemclasses.ListItem}>Loading...</div>
-      )}
-
+      {isLoading && !error && <div className={listItem}>Loading...</div>}
 
       {/*Load more button */}
-      {!props.isLoading && !props.error && props.data && <ListItemLoader />}
+      {!isLoading && !error && data && <ListItemLoader />}
 
       {/* When search returns no result */}
-      {!props.isLoading && props.data && props.data.length === 0 && (
-        <div className={itemclasses.ListItem}>No contacts found :/</div>
+      {!isLoading && data && data.length === 0 && (
+        <div className={listItem}>No contacts found :/</div>
       )}
 
       {/* When fetching returns error */}
-      {!props.isLoading && props.error && (
-        <div className={itemclasses.ListItem}>{props.error}</div>
-      )}
+      {!isLoading && error && <div className={listItem}>{error}</div>}
     </div>
   );
 };

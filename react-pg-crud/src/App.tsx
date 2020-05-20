@@ -9,7 +9,23 @@ function App() {
     <div id="App">
       <Router>
         <DataProvider>
-          <Navbar />
+          <Navbar
+            links={[
+              {
+                name: "Home",
+                path: "/",
+              },
+              {
+                name: "About",
+                path: "/about",
+              },
+              {
+                name: "React-pg-crud",
+                path: "/",
+                brand: true,
+              },
+            ]}
+          />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />

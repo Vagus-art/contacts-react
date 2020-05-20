@@ -24,5 +24,6 @@ export interface IContact {
 export interface IDataContext extends IListProps{
   search: string;
   offset: number;
-  modalMenuActive: boolean;
+  editFormActive: boolean;
+  addFormActive: boolean;
 }

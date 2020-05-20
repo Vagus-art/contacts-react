@@ -2,7 +2,8 @@ import React, { createContext, useReducer, useMemo } from "react";
 import { IDataContext } from "../interfaces";
 
 const initialState: IDataContext = {
-  modalMenuActive:false,
+  editFormActive: false,
+  addFormActive: false,
   search: "",
   data: null,
   isLoading: true,
@@ -17,9 +18,9 @@ function reducer(state: IDataContext, action: { type: string; payload: any }) {
     case "TOGGLE_LOADING":
       return { ...state, isLoading: action.payload };
     case "SEARCH":
-      return { ...state, search: action.payload, offset:0 };
+      return { ...state, search: action.payload, offset: 0 };
     case "OFFSET":
-      return { ...state, offset:state.offset+1}
+      return { ...state, offset: state.offset + 1 };
     case "ERROR":
       return { ...state, error: action.payload };
     case "PUSH_MORE_DATA":
@@ -27,9 +28,11 @@ function reducer(state: IDataContext, action: { type: string; payload: any }) {
         const newData = [...state.data, ...action.payload];
         return { ...state, data: newData };
       }
-      return { ...state, data: action.payload }
-    case "TOGGLE_MODAL_MENU":
-      return { ...state, modalMenuActive:!state.modalMenuActive}
+      return { ...state, data: action.payload };
+    case "TOGGLE_EDIT_FORM":
+      return { ...state, editFormActive: !state.editFormActive };
+    case "TOGGLE_ADD_FORM":
+      return { ...state, addFormActive: !state.addFormActive };
     default:
       throw new Error();
   }

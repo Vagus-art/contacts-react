@@ -2,28 +2,33 @@ import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./Navbar.module.css";
 
-const { CNav, CNavMenu, CNavMenuItem, CLink, Brand } = classes;
+const { cNav, cNavMenu, cNavMenuItem, cLink, cBrand } = classes;
 
-export default function Navbar() {
+type NavbarLink = {
+  name: string;
+  path: string;
+  brand?: boolean;
+};
+
+interface INavbarProps {
+  links: NavbarLink[];
+}
+
+const Navbar: React.FC<INavbarProps> = ({ links }) => {
   return (
-    <div className={CNav}>
-      <ul className={CNavMenu}>
-        <li className={CNavMenuItem}>
-          <Link className={CLink} to="/">
-            Home
-          </Link>
-        </li>
-        <li className={CNavMenuItem}>
-          <Link className={CLink} to="/about">
-            About
-          </Link>
-        </li>
-        <li className={`${CNavMenuItem} ${Brand}`}>
-          <Link className={CLink} to="/">
-            React-pg-crud
-          </Link>
-        </li>
+    <div className={cNav}>
+      <ul className={cNavMenu}>
+        {links &&
+          links.map((link) => (
+            <li className={`${cNavMenuItem} ${link.brand && cBrand}`}>
+              <Link className={cLink} to={link.path}>
+                {link.name}
+              </Link>
+            </li>
+          ))}
       </ul>
     </div>
   );
-}
+};
+
+export default Navbar;

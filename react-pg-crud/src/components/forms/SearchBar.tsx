@@ -7,6 +7,8 @@ type SearchFormData = {
   search: string;
 };
 
+const { searchBarContainer, searchBar } = classes;
+
 export default function SearchBar() {
   const { register, handleSubmit } = useForm<SearchFormData>();
   const { dispatch } = useContext(DataContext);
@@ -16,12 +18,12 @@ export default function SearchBar() {
     console.log(search);
   });
   return (
-    <form onSubmit={onSubmit} className={classes.SearchBarContainer}>
+    <form onSubmit={onSubmit} className={searchBarContainer}>
       <input
         name="search"
         type="text"
         placeholder="search..."
-        className={classes.SearchBar}
+        className={searchBar}
         ref={register}
       />
     </form>

@@ -1,39 +1,39 @@
-.ListItem{
+.listItem{
     padding:15px;
     border-bottom: 1px solid #ced4da;
 }
-.ListItemWithButtons{
+.listItemWithButtons{
     display:flex;
     width:100%;
     justify-content: space-between;
 }
-.ButtonPanel{
+.buttonPanel{
     display:flex;
     height:inherit;
     justify-content: center;
     align-items: center;
 }
-.ButtonPanel *{
+.buttonPanel *{
     margin-left:5px;
 }
-.ButtonPanel :first-child{
+.buttonPanel :first-child{
     margin:0;
 }
-.ButtonPanel button{
+.buttonPanel button{
     width:35px;
     height:35px;
     border: 1px solid #ced4da;
     border-radius: 3px;
 }
-.ButtonPanel button:hover{
+.buttonPanel button:hover{
     background-color: rgb(240, 240, 240);
 }
-.ListItemLoader{
+.listItemLoader{
     background-color: #df5700;
     color:white;
     text-align: center;
 }
-.ListItemLoader:hover{
+.listItemLoader:hover{
     cursor:pointer;
     background-color: #f35d00;
 }

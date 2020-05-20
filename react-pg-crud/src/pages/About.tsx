@@ -1,9 +1,11 @@
 import React from "react";
 import classes from "./Pages.module.css";
 
+const { page } = classes;
+
 export default function About() {
   return (
-    <div className={classes.Page}>
+    <div className={page}>
       <h1>About</h1>
       <br />
       <p>

@@ -1,26 +1,26 @@
-.CNav{
+.cNav{
     width:100%;
     background-color:#1a3ebc;
 }
-.CLink{
+.cLink{
     color:white;
     text-decoration: none;
 }
-.CNavMenu{
+.cNavMenu{
     display:flex;
     width:inherit;
     height:100%;
     list-style: none;
 }
-.CNavMenuItem{
+.cNavMenuItem{
     height:100%;
     padding:15px;
     text-align: center;
 }
-.CNavMenuItem:hover{
+.cNavMenuItem:hover{
     background-color: #105fdb;
 }
-.Brand{
+.cBrand{
     margin-left:auto;
     font-size: large;
 }

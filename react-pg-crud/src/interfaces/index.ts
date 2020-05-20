@@ -12,7 +12,7 @@ export interface IModalMenuProps {
 
 export interface IListItem {
   name: string;
-  phone: number;
+  phone: string;
 }
 
 export interface IContact {
@@ -21,9 +21,14 @@ export interface IContact {
   id: number
 }
 
+export interface IContactForm {
+  name:string,
+  phone:string
+}
+
 export interface IDataContext extends IListProps{
   search: string;
   offset: number;
-  editFormActive: boolean;
-  addFormActive: boolean;
+  contactFormActive: boolean;
+  contactFormContent: IContactForm
 }

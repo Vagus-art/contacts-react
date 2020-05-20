@@ -1,7 +1,7 @@
-import React/*, { useContext }*/ from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-//import DataContext from "../../context/DataProvider";
 import * as yup from "yup";
+import DataContext from "../../context/DataProvider";
 
 const contactFormSchema = yup.object().shape({
   name: yup.string().required().min(5),
@@ -9,20 +9,31 @@ const contactFormSchema = yup.object().shape({
 });
 
 interface ContactFormProps {
-  onSubmitCallback?: () => void;
+  Callback?: () => void;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ onSubmitCallback }) => {
-  const { register, handleSubmit, errors } = useForm({
+const ContactForm: React.FC<ContactFormProps> = ({ Callback }) => {
+  const { register, handleSubmit, setValue, errors } = useForm({
     validationSchema: contactFormSchema,
   });
-  //const { store } = useContext(DataContext);
+
+  const {
+    store: {
+      contactFormContent: { name, phone },
+    },
+  } = useContext(DataContext);
+
   const onSubmit = handleSubmit(({ name, phone }) => {
     console.log(name, phone);
-    if (onSubmitCallback) {
-      onSubmitCallback();
+    if (Callback) {
+      Callback();
     }
   });
+
+  useEffect(()=>{
+    setValue([{name,phone}])
+  },[name,phone,setValue]);
+
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -30,6 +41,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmitCallback }) => {
         <input
           type="text"
           name="name"
+          defaultValue={name}
           ref={register({
             required: "Name is required",
             minLength: {
@@ -43,6 +55,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmitCallback }) => {
         <input
           type="text"
           name="phone"
+          defaultValue={phone}
           ref={register({
             required: "Phone is required",
             minLength: {
@@ -51,7 +64,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmitCallback }) => {
             },
           })}
         />
-        {errors.name && <p>Phone is invalid</p>}
+        {errors.phone && <p>Phone is invalid</p>}
+        <button onClick={Callback}>Cancel</button>
         <input type="submit" value="Submit" />
       </form>
     </div>

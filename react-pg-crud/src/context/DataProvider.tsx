@@ -1,9 +1,12 @@
 import React, { createContext, useReducer, useMemo } from "react";
-import { IDataContext } from "../interfaces";
+import { IDataContext, IContactForm } from "../interfaces";
 
 const initialState: IDataContext = {
-  editFormActive: false,
-  addFormActive: false,
+  contactFormActive: false,
+  contactFormContent: {
+    name: "",
+    phone: "",
+  },
   search: "",
   data: null,
   isLoading: true,
@@ -30,9 +33,12 @@ function reducer(state: IDataContext, action: { type: string; payload: any }) {
       }
       return { ...state, data: action.payload };
     case "TOGGLE_EDIT_FORM":
-      return { ...state, editFormActive: !state.editFormActive };
-    case "TOGGLE_ADD_FORM":
-      return { ...state, addFormActive: !state.addFormActive };
+      const data : IContactForm = action.payload ? action.payload : { name: "", phone: "" };
+      return {
+        ...state,
+        contactFormActive: !state.contactFormActive,
+        contactFormContent: data,
+      };
     default:
       throw new Error();
   }

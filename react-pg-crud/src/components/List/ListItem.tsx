@@ -19,7 +19,11 @@ const ListItem: React.FC<IListItem> = ({ name, phone }) => {
         <p>{phone}</p>
       </div>
       <div className={buttonPanel}>
-        <button onClick={() => dispatch({ type: "TOGGLE_EDIT_FORM" })}>
+        <button
+          onClick={() =>
+            dispatch({ type: "TOGGLE_EDIT_FORM", payload: { name, phone } })
+          }
+        >
           <FontAwesomeIcon icon={faEdit} />
         </button>
         <button>

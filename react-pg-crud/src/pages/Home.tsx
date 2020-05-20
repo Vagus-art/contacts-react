@@ -8,7 +8,7 @@ const { page } = classes;
 
 export default function Home() {
   const { store, dispatch } = useContext(DataContext);
-  const { editFormActive } = store;
+  const { contactFormActive } = store;
   return (
     <div>
       <SearchBar />
@@ -16,11 +16,11 @@ export default function Home() {
         <List />
       </div>
       <ModalMenu
-        active={editFormActive}
+        active={contactFormActive}
         closeFunc={() => dispatch({ type: "TOGGLE_EDIT_FORM" })}
       >
         <ContactForm
-          onSubmitCallback={() => dispatch({ type: "TOGGLE_EDIT_FORM" })}
+          Callback={() => dispatch({ type: "TOGGLE_EDIT_FORM" })}
         />
       </ModalMenu>
     </div>

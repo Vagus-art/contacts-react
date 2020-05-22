@@ -23,8 +23,8 @@ const List: React.FC<IListProps> = ({ isLoading, data, error }) => {
       {/*Loading indicator */}
       {isLoading && !error && <div className={listItem}>Loading...</div>}
 
-      {/*Load more button */}
-      {!isLoading && !error && data && <ListItemLoader />}
+      {/*Load more button (only works when data length is divisible by 10) */}
+      {!isLoading && !error && data && data.length%10===0 && data.length!==0 && <ListItemLoader />}
 
       {/* When search returns no result */}
       {!isLoading && data && data.length === 0 && (

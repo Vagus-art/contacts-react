@@ -6,7 +6,7 @@ import { IContactForm } from "../../interfaces";
 
 const contactFormSchema = yup.object().shape({
   name: yup.string().required().min(5),
-  phone: yup.number().required().positive().integer().min(5),
+  phone: yup.number().required().positive().integer().test('len', 'Must be exactly 5 characters', val => val.toString().length > 4),
 });
 
 interface ContactFormProps {

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import DataContext from "../../context/DataProvider";
+import { IContactForm } from "../../interfaces";
 
 const contactFormSchema = yup.object().shape({
   name: yup.string().required().min(5),
@@ -9,31 +10,31 @@ const contactFormSchema = yup.object().shape({
 });
 
 interface ContactFormProps {
-  Callback?: () => void;
+  closeFunc: () => void;
+  submitFunc: (contact: IContactForm) => void;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ Callback }) => {
+const ContactForm: React.FC<ContactFormProps> = ({ closeFunc, submitFunc }) => {
   const { register, handleSubmit, setValue, errors, clearError } = useForm({
     validationSchema: contactFormSchema,
   });
 
   const {
     store: {
-      contactFormContent: { name, phone },
+      contactFormContent: { name, phone, id },
     },
   } = useContext(DataContext);
 
   const onSubmit = handleSubmit(({ name, phone }) => {
-    console.log(name, phone);
-    if (Callback) {
-      Callback();
-    }
+    //name and phone are the input values, id gets passed by the closure (its the store value)
+    submitFunc({ name, phone, id });
+    closeFunc();
   });
 
-  useEffect(()=>{
-    setValue([{name},{phone}]);
+  useEffect(() => {
+    setValue([{ name }, { phone }]);
     clearError();
-  },[name,phone,setValue,clearError]);
+  }, [name, phone, setValue, clearError]);
 
   return (
     <div>
@@ -66,7 +67,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ Callback }) => {
           })}
         />
         {errors.phone && <p>Phone is invalid</p>}
-        <button onClick={Callback}>Cancel</button>
+        <button onClick={closeFunc}>Cancel</button>
         <input type="submit" value="Submit" />
       </form>
     </div>

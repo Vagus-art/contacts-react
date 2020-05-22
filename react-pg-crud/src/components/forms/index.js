@@ -1,2 +1,2 @@
-export {default as ContactForm} from "./ContactForm";
+export {default as ModalContactForm} from "./ModalContactFormWrapper";
 export {default as SearchBar} from "./SearchBar";

@@ -14,8 +14,8 @@ const List: React.FC<IListProps> = ({ isLoading, data, error }) => {
       {/*List items with loader button */}
       {!error && data && (
         <div>
-          {data.map(({name, phone}, index) => (
-            <ListItem name={name} phone={phone} key={index} />
+          {data.map(({name, phone, id}, index) => (
+            <ListItem name={name} phone={phone} id={id} key={index} />
           ))}
         </div>
       )}

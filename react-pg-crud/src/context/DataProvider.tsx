@@ -6,6 +6,7 @@ const initialState: IDataContext = {
   contactFormContent: {
     name: "",
     phone: "",
+    id: null,
   },
   search: "",
   data: null,
@@ -33,7 +34,9 @@ function reducer(state: IDataContext, action: { type: string; payload: any }) {
       }
       return { ...state, data: action.payload };
     case "TOGGLE_EDIT_FORM":
-      const data : IContactForm = action.payload ? action.payload : { name: "", phone: "" };
+      const data: IContactForm = action.payload
+        ? action.payload
+        : { name: "", phone: "", id: null };
       return {
         ...state,
         contactFormActive: !state.contactFormActive,
@@ -46,7 +49,7 @@ function reducer(state: IDataContext, action: { type: string; payload: any }) {
 
 const DataContext: any = createContext({});
 
-function DataProvider({ children }: { children: JSX.Element[] }) {
+const DataProvider : React.FC = ({ children }) => {
   const [store, dispatch] = useReducer(reducer, initialState);
   const contextValue = useMemo(() => {
     return { store, dispatch };

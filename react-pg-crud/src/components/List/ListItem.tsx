@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const { listItem, buttonPanel, listItemWithButtons } = classes;
 
-const ListItem: React.FC<IListItem> = ({ name, phone }) => {
+const ListItem: React.FC<IListItem> = ({ name, phone, id }) => {
   const { dispatch } = useContext(DataContext);
   return (
     <div className={`${listItem} ${listItemWithButtons}`}>
@@ -21,7 +21,7 @@ const ListItem: React.FC<IListItem> = ({ name, phone }) => {
       <div className={buttonPanel}>
         <button
           onClick={() =>
-            dispatch({ type: "TOGGLE_EDIT_FORM", payload: { name, phone } })
+            dispatch({ type: "TOGGLE_EDIT_FORM", payload: { name, phone, id } })
           }
         >
           <FontAwesomeIcon icon={faEdit} />

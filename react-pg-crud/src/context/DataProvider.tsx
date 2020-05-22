@@ -1,9 +1,10 @@
 import React, { createContext, useReducer, useMemo } from "react";
-import { IDataContext, IContactForm } from "../interfaces";
+import { IDataContext, IContactForm, IContact } from "../interfaces";
 
 const initialState: IDataContext = {
   contactFormActive: false,
-  contactFormContent: {
+  deleteFormActive: false,
+  currentContactData: {
     name: "",
     phone: "",
     id: null,
@@ -16,6 +17,8 @@ const initialState: IDataContext = {
 };
 
 function reducer(state: IDataContext, action: { type: string; payload: any }) {
+  let currentContact : IContactForm;
+  let newData : IContact[];
   switch (action.type) {
     case "DATA_FETCHED":
       return { ...state, data: action.payload };
@@ -29,19 +32,26 @@ function reducer(state: IDataContext, action: { type: string; payload: any }) {
       return { ...state, error: action.payload };
     case "PUSH_MORE_DATA":
       if (state.data) {
-        const newData = [...state.data, ...action.payload];
+        newData = [...state.data, ...action.payload];
         return { ...state, data: newData };
       }
       return { ...state, data: action.payload };
     case "TOGGLE_EDIT_FORM":
-      const data: IContactForm = action.payload
+      //find a way to remove this repetition
+      currentContact = action.payload
         ? action.payload
         : { name: "", phone: "", id: null };
       return {
         ...state,
         contactFormActive: !state.contactFormActive,
-        contactFormContent: data,
+        currentContactData: currentContact,
       };
+    case "TOGGLE_DELETE_FORM":
+      //here
+      currentContact = action.payload
+        ? action.payload
+        : { name: "", phone: "", id: null };
+      return { ...state, currentContactData:currentContact, deleteFormActive:!state.deleteFormActive}
     default:
       throw new Error();
   }

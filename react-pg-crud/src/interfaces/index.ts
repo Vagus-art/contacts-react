@@ -10,17 +10,14 @@ export interface IModalMenuProps {
   children: any;
 }
 
-export interface IListItem {
-  name: string;
-  phone: string;
-  id:number
-}
-
 export interface IContact {
   name: string;
   phone: string;
   id: number
 }
+
+export interface IListItem extends IContact {}
+
 
 export interface IContactForm{
   name:string,
@@ -32,5 +29,6 @@ export interface IDataContext extends IListProps{
   search: string;
   offset: number;
   contactFormActive: boolean;
-  contactFormContent: IContactForm
+  deleteFormActive: boolean
+  currentContactData: IContactForm
 }

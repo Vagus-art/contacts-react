@@ -6,11 +6,21 @@ import { IContactForm } from "../../interfaces";
 
 const contactFormSchema = yup.object().shape({
   name: yup.string().required().min(5),
-  phone: yup.number().required().positive().integer().test('len', 'Must be exactly 5 characters', val => val.toString().length > 4),
+  phone: yup
+    .number()
+    .required()
+    .positive()
+    .integer()
+    .test(
+      "len",
+      "Must be exactly 5 characters",
+      (val) => val.toString().length > 4
+    ),
 });
 
 interface ContactFormProps {
   closeFunc: () => void;
+  //closeFunc is a function needed to close the modal menu from the form, it changes the boolean value used to determine if it's closed or not
   submitFunc: (contact: IContactForm) => void;
 }
 
@@ -21,7 +31,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ closeFunc, submitFunc }) => {
 
   const {
     store: {
-      contactFormContent: { name, phone, id },
+      currentContactData: { name, phone, id },
     },
   } = useContext(DataContext);
 

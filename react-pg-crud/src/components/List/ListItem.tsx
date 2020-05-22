@@ -26,7 +26,10 @@ const ListItem: React.FC<IListItem> = ({ name, phone, id }) => {
         >
           <FontAwesomeIcon icon={faEdit} />
         </button>
-        <button>
+        <button
+        onClick={() =>
+          dispatch({ type: "TOGGLE_DELETE_FORM", payload: { name, phone, id } })
+        }>
           <FontAwesomeIcon icon={faTrashAlt} />
         </button>
       </div>

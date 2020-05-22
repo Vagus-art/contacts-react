@@ -2,7 +2,7 @@ import React from "react";
 import { SearchBar } from "../components/forms";
 import classes from "./Pages.module.css";
 import { ListWrapper as List } from "../components";
-import { ModalContactForm } from "../components/forms";
+import { ModalContactForm, ModalDeleteContact } from "../components/forms";
 
 const { page } = classes;
 
@@ -14,6 +14,7 @@ export default function Home() {
         <List />
       </div>
       <ModalContactForm />
+      <ModalDeleteContact />
     </div>
   );
 }

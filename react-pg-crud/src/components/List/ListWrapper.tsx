@@ -6,9 +6,10 @@ import DataContext from "../../context/DataProvider";
 const apiRoot = "https://pg-raw-api.herokuapp.com/api/contacts/";
 
 const ListWrapper = () => {
-  const { store, dispatch } = useContext(DataContext);
-
-  const { isLoading, data, error, search, offset } = store;
+  const {
+    store: { isLoading, data, error, search, offset },
+    dispatch,
+  } = useContext(DataContext);
 
   useEffect(() => {
     const fetchData = ({

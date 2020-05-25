@@ -2,8 +2,7 @@ import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import List from "./List";
 import DataContext from "../../context/DataProvider";
-
-const apiRoot = "https://pg-raw-api.herokuapp.com/api/contacts/";
+import { apiRoot } from "../../context/DataProvider";
 
 const ListWrapper = () => {
   const {

@@ -1,6 +1,8 @@
 import React, { createContext, useReducer, useMemo } from "react";
 import { IDataContext, IContactForm, IContact } from "../interfaces";
 
+export const apiRoot = "https://pg-raw-api.herokuapp.com/api/contacts/";
+
 const initialState: IDataContext = {
   contactFormActive: false,
   deleteFormActive: false,

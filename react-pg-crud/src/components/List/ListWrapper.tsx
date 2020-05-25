@@ -6,7 +6,7 @@ import { apiRoot } from "../../context/DataProvider";
 
 const ListWrapper = () => {
   const {
-    store: { isLoading, data, error, search, offset },
+    store: { isLoading, data, error, search, offset, updateSwitch },
     dispatch,
   } = useContext(DataContext);
 
@@ -37,7 +37,7 @@ const ListWrapper = () => {
         .finally(() => dispatch({ type: "TOGGLE_LOADING", payload: false }));
     };
     fetchData({ search, offset });
-  }, [search, offset, dispatch]);
+  }, [search, offset, dispatch, updateSwitch]);
 
   return <List isLoading={isLoading} data={data} error={error} />;
 };

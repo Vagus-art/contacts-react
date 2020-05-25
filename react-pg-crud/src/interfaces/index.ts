@@ -29,6 +29,8 @@ export interface IDataContext extends IListProps{
   search: string;
   offset: number;
   contactFormActive: boolean;
-  deleteFormActive: boolean
-  currentContactData: IContactForm
+  deleteFormActive: boolean;
+  currentContactData: IContactForm;
+  //use this to trigger a data update
+  updateSwitch: boolean;
 }

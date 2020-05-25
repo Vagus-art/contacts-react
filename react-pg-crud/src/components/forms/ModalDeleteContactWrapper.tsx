@@ -9,9 +9,12 @@ const ModalContactFormWrapper: React.FC = () => {
     store: { deleteFormActive },
     dispatch,
   } = useContext(DataContext);
-  const onSubmit = (id: number) => {
-    console.log("deleted", id);
-    axios.delete(apiRoot + id).then(dispatch({ type: "SEARCH", payload: "" }));
+  const onSubmit = async (id: number) => {
+    dispatch({ type: "CLEAN_LOADING" });
+    const response = await axios.delete(apiRoot + id);
+    if (response) {
+      dispatch({ type: "UPDATE" });
+    }
   };
   return (
     <ModalMenu

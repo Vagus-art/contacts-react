@@ -5,22 +5,23 @@ import DataContext, { apiRoot } from "../../context/DataProvider";
 import { IContactForm } from "../../interfaces";
 import axios, { AxiosRequestConfig } from "axios";
 
-//bug, i need something to trigger the listwrapper's useEffect, so data refreshes each time I modify something
 
 const ModalContactFormWrapper: React.FC = () => {
   const {
     store: { contactFormActive },
     dispatch,
   } = useContext(DataContext);
-  const onSubmit = (data: IContactForm) => {
+  const onSubmit = async (data: IContactForm) => {
+    dispatch({ type: "CLEAN_LOADING" });
     let method: AxiosRequestConfig["method"] = data.id ? "put" : "post";
-    axios
-      .request({
-        baseURL: apiRoot,
-        method,
-        data,
-      })
-      .finally(dispatch({ type: "SEARCH", payload: "" }));
+    const response = await axios.request({
+      baseURL: apiRoot,
+      method,
+      data,
+    });
+    if (response) {
+      dispatch({ type: "UPDATE" });
+    }
   };
   return (
     <ModalMenu

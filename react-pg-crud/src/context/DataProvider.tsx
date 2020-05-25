@@ -16,16 +16,21 @@ const initialState: IDataContext = {
   isLoading: true,
   error: "",
   offset: 0,
+  updateSwitch: false,
 };
 
 function reducer(state: IDataContext, action: { type: string; payload: any }) {
-  let currentContact : IContactForm;
-  let newData : IContact[];
+  let currentContact: IContactForm;
+  let newData: IContact[];
   switch (action.type) {
     case "DATA_FETCHED":
       return { ...state, data: action.payload };
     case "TOGGLE_LOADING":
       return { ...state, isLoading: action.payload };
+    case "CLEAN_LOADING":
+      return { ...state, isLoading: true, data: null}
+    case "UPDATE":
+      return { ...state, updateSwitch: !state.updateSwitch, search: "", offset:0 };
     case "SEARCH":
       return { ...state, search: action.payload, offset: 0 };
     case "OFFSET":
@@ -53,7 +58,11 @@ function reducer(state: IDataContext, action: { type: string; payload: any }) {
       currentContact = action.payload
         ? action.payload
         : { name: "", phone: "", id: null };
-      return { ...state, currentContactData:currentContact, deleteFormActive:!state.deleteFormActive}
+      return {
+        ...state,
+        currentContactData: currentContact,
+        deleteFormActive: !state.deleteFormActive,
+      };
     default:
       throw new Error();
   }
@@ -61,7 +70,7 @@ function reducer(state: IDataContext, action: { type: string; payload: any }) {
 
 const DataContext: any = createContext({});
 
-const DataProvider : React.FC = ({ children }) => {
+const DataProvider: React.FC = ({ children }) => {
   const [store, dispatch] = useReducer(reducer, initialState);
   const contextValue = useMemo(() => {
     return { store, dispatch };
@@ -69,6 +78,6 @@ const DataProvider : React.FC = ({ children }) => {
   return (
     <DataContext.Provider value={contextValue}>{children}</DataContext.Provider>
   );
-}
+};
 
 export { DataProvider as Provider, DataContext as default };

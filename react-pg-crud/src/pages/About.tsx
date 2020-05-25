@@ -13,6 +13,7 @@ export default function About() {
         Vue in terms of maintainability, scalability and simplicity.Is the first
         of 3 UIs designed to do the same task.
       </p>
+      <p>With this project I've learned how to use Typescript with React.</p>
     </div>
   );
 }

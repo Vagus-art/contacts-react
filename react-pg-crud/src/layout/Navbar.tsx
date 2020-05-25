@@ -19,7 +19,7 @@ const Navbar: React.FC<INavbarProps> = ({ links }) => {
     <div className={cNav}>
       <ul className={cNavMenu}>
         {links &&
-          links.map(({brand, path, name}, index) => (
+          links.map(({ brand, path, name }, index) => (
             <li className={`${cNavMenuItem} ${brand && cBrand}`} key={index}>
               <Link className={cLink} to={path}>
                 {name}

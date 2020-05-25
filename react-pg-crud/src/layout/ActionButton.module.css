@@ -1,0 +1,14 @@
+.actionButton{
+    position:fixed;
+    bottom:15px;
+    right:15px;
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background-color:#1e4ae9;
+    color:white;
+    display:flex;
+    justify-content: center;
+    font-size:1.5em;
+    align-items:center;
+}

@@ -48,6 +48,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ closeFunc, submitFunc }) => {
 
   return (
     <div>
+      {id? <h1>Edit</h1> : <h1>Add</h1>}
       <form onSubmit={onSubmit}>
         <h1>Name</h1>
         <input

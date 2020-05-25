@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import DataContext from "../../context/DataProvider";
 
-interface ContactFormProps {
+interface DeleteFormProps {
   closeFunc: () => void;
   //closeFunc is a function needed to close the modal menu from the form, it changes the boolean value used to determine if it's closed or not
   submitFunc: (id: number) => void;
 }
 
-const DeleteContact: React.FC<ContactFormProps> = ({
+const DeleteContact: React.FC<DeleteFormProps> = ({
   closeFunc,
   submitFunc,
 }) => {

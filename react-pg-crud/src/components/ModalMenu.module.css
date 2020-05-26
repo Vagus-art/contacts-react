@@ -21,6 +21,7 @@
 .modalMenuContent{
     background-color:white;
     border-radius: 3px;
-    padding:30px;
+    padding:15px;
     z-index:1;
+    max-width:300px;
 }

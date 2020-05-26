@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
 import DataContext from "../../context/DataProvider";
+import classes from "./Form.module.css";
+
+const { header, buttonsPanel, formButton, cancel, bar } = classes;
 
 interface DeleteFormProps {
   closeFunc: () => void;
@@ -17,7 +20,7 @@ const DeleteContact: React.FC<DeleteFormProps> = ({
     },
   } = useContext(DataContext);
 
-  const onSubmit = (e:React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     submitFunc(id);
     closeFunc();
@@ -26,9 +29,14 @@ const DeleteContact: React.FC<DeleteFormProps> = ({
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <h1>Are you sure you want to delete {name}?</h1>
-        <input type="button" onClick={closeFunc} value="Cancel"/>
-        <input type="submit" value="Submit" />
+        <h2 className={header}>Are you sure you want to delete {name}?</h2>
+        <hr className={bar}/>
+        <div className={buttonsPanel}>
+          <button onClick={closeFunc} className={`${formButton} ${cancel}`}>
+            Cancel
+          </button>
+          <input type="submit" value="Confirm" className={formButton} />
+        </div>
       </form>
     </div>
   );

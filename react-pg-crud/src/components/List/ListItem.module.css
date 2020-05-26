@@ -24,9 +24,11 @@
     height:35px;
     border: 1px solid #ced4da;
     border-radius: 3px;
+    background-color: inherit;
 }
 .buttonPanel button:hover{
     background-color: rgb(240, 240, 240);
+    cursor:pointer;
 }
 .listItemLoader{
     background-color: #df5700;

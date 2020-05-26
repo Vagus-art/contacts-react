@@ -7,7 +7,7 @@ type SearchFormData = {
   search: string;
 };
 
-const { searchBarContainer, searchBar } = classes;
+const { searchBarContainer } = classes;
 
 export default function SearchBar() {
   const { register, handleSubmit } = useForm<SearchFormData>();
@@ -23,7 +23,6 @@ export default function SearchBar() {
         name="search"
         type="text"
         placeholder="search..."
-        className={searchBar}
         ref={register}
       />
     </form>

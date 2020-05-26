@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import DataContext from "../../context/DataProvider";
 import { IContactForm } from "../../interfaces";
+import classes from "./Form.module.css";
+
+const { header, bar, input, buttonsPanel, formButton, cancel } = classes;
 
 const contactFormSchema = yup.object().shape({
   name: yup.string().required().min(5),
@@ -48,38 +51,47 @@ const ContactForm: React.FC<ContactFormProps> = ({ closeFunc, submitFunc }) => {
 
   return (
     <div>
-      {id? <h1>Edit</h1> : <h1>Add</h1>}
+      {id ? <h2 className={header}>Edit</h2> : <h2 className={header}>Add</h2>}
+      <hr className={bar} />
       <form onSubmit={onSubmit}>
-        <h1>Name</h1>
-        <input
-          type="text"
-          name="name"
-          defaultValue={name}
-          ref={register({
-            required: "Name is required",
-            minLength: {
-              value: 5,
-              message: "Name must be at least 5 characters long",
-            },
-          })}
-        />
+        <label>
+          Name
+          <input
+            className={input}
+            type="text"
+            name="name"
+            defaultValue={name}
+            ref={register({
+              required: "Name is required",
+              minLength: {
+                value: 5,
+                message: "Name must be at least 5 characters long",
+              },
+            })}
+          />
+        </label>
         {errors.name && <p>Name is invalid</p>}
-        <h1>Phone</h1>
-        <input
-          type="text"
-          name="phone"
-          defaultValue={phone}
-          ref={register({
-            required: "Phone is required",
-            minLength: {
-              value: 5,
-              message: "Phone must be at least 5 digits long",
-            },
-          })}
-        />
+        <label>
+          Phone
+          <input
+            className={input}
+            type="text"
+            name="phone"
+            defaultValue={phone}
+            ref={register({
+              required: "Phone is required",
+              minLength: {
+                value: 5,
+                message: "Phone must be at least 5 digits long",
+              },
+            })}
+          />
+        </label>
         {errors.phone && <p>Phone is invalid</p>}
-        <button onClick={closeFunc}>Cancel</button>
-        <input type="submit" value="Submit" />
+        <div className={buttonsPanel}>
+          <button onClick={closeFunc} className={`${formButton} ${cancel}`}>Cancel</button>
+          <input type="submit" value="Submit" className={formButton} />
+        </div>
       </form>
     </div>
   );

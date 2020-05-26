@@ -1,0 +1,36 @@
+.header{
+    width:100%;
+    text-align:center;
+}
+.bar{
+    opacity:0.2;
+    background-color: #495057;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.input{
+    margin-bottom:15px;
+}
+.buttonsPanel{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+}
+.formButton{
+    padding:10px;
+    border-radius:5px;
+    border:none;
+    font-size:1.02em;
+    background-color:#1a3ebc;
+    color:white;
+}
+.formButton:hover{
+    background-color: #105fdb;
+    cursor:pointer;
+}
+.cancel{
+    background-color: #cc3723;
+}
+.cancel:hover{
+    background-color: #d83e2a;
+}
